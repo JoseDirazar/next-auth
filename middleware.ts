@@ -4,6 +4,7 @@ import authConfig from "./auth.config";
 import {
   DEFAULT_LOGIN_REDIRECT,
   SIGN_IN_PAGE,
+  adminRoutes,
   authRoutes,
   privateRoutes,
 } from "./middleware-routes";
@@ -16,7 +17,8 @@ export default auth((req) => {
 
   const isAuthRoute = authRoutes.includes(nextUrl.pathname);
   const isPrivateRoute = privateRoutes.includes(nextUrl.pathname);
-
+  const isAdminRoute = adminRoutes.includes(nextUrl.pathname);
+  console.log("REQUEST::::::::::", req.geo);
   if (isLoggedIn && isAuthRoute) {
     return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
   }

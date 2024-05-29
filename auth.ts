@@ -1,6 +1,6 @@
 import NextAuth from "next-auth";
 import authConfig from "./auth.config";
-import { getUserById } from "./utils/auth-querys";
+import { getUserById } from "./utils/auth-queries";
 
 export const {
   handlers: { GET, POST },
@@ -31,7 +31,7 @@ export const {
 
     async jwt({ token, user }) {
       if (!token.sub) return token;
-
+      console.log("JWT user ", user);
       const existingUser = await getUserById(token.sub);
 
       if (!existingUser) return token;
@@ -48,7 +48,6 @@ export const {
       if (token.role && session.user) {
         session.user.role = token.role;
       }
-      console.log("session", session, token, user);
       return session;
     },
   },

@@ -5,14 +5,26 @@ import Link from "next/link";
 
 export default async function Home() {
   const session = await auth();
-  console.log(session);
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <h1>{session && session?.user?.name}</h1>
-      <Link href="/sign-in">Sign In</Link>
-      <Link href="sign-up">Sign Up</Link>
+      {session ? (
+        <h1>Hello {session?.user?.name}!</h1>
+      ) : (
+        <h1>Hello!. Please sign in</h1>
+      )}
+
+      <div className="contain-content flex items-center jusrify-center p-5 gap-5">
+        {session?.user ? (
+          <LogoutButton>Log out</LogoutButton>
+        ) : (
+          <>
+            <Link href="/sign-in">Sign In</Link>
+            <Link href="sign-up">Sign Up</Link>
+          </>
+        )}
+      </div>
       <Link href="/about">About</Link>
-      <LogoutButton>Log out</LogoutButton>
     </main>
   );
 }

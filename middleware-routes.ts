@@ -20,6 +20,8 @@ export const authRoutes = ["/sign-in", "/sign-up"];
 
 export const privateRoutes = ["/error", "/reset", "/new-password", "/about"];
 
+export const adminRoutes = ["/dashboard"];
+
 /**
  * The prefix for API authentication routes
  * Routes that start with this prefix are used for API authentication purposes

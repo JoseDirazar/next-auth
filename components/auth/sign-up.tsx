@@ -1,7 +1,6 @@
 "use client";
-import { lusitana } from "@/lib/fonts";
 import { useFormState, useFormStatus } from "react-dom";
-import { authenticate } from "@/utils/db";
+import { register } from "@/utils/db";
 
 /* import {
   AtSymbolIcon,
@@ -9,16 +8,40 @@ import { authenticate } from "@/utils/db";
   ExclamationCircleIcon,
 } from '@heroicons/react/24/outline';
 import { ArrowRightIcon } from '@heroicons/react/20/solid'; */
+import { useRouter } from "next/navigation";
 
-export default function LoginForm() {
-  const [errorMessage, dispatch] = useFormState(authenticate, undefined);
+export default function RegisterForm() {
+  const [errorMessage, dispatch] = useFormState(register, undefined);
+  const router = useRouter();
+
+  function submitAction(payload: FormData) {
+    dispatch(payload);
+    //router.push("/sign-in");
+  }
   return (
-    <form action={dispatch} className="space-y-3">
-      <div className="flex-1 rounded-lg bg-gray-50 px-6 pb-4 pt-8">
-        <h1 className={`${lusitana.className} mb-3 text-2xl`}>
-          Please log in to continue.
-        </h1>
+    <form action={submitAction} className="container">
+      <div className="flex-1 rounded-lg bg-gray-500 px-6 pb-4 pt-8">
+        <h1 className={`mb-3 text-2xl`}>Please register to continue.</h1>
         <div className="w-full">
+          <div>
+            <label
+              className="mb-3 mt-5 block text-xs font-medium text-gray-900"
+              htmlFor="name"
+            >
+              Name
+            </label>
+            <div className="relative">
+              <input
+                className="peer text-black block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
+                id="name"
+                type="name"
+                name="name"
+                placeholder="Enter your name"
+                required
+              />
+              {/*  <AtSymbolIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" /> */}
+            </div>
+          </div>
           <div>
             <label
               className="mb-3 mt-5 block text-xs font-medium text-gray-900"
@@ -28,7 +51,7 @@ export default function LoginForm() {
             </label>
             <div className="relative">
               <input
-                className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
+                className="peer text-black block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
                 id="email"
                 type="email"
                 name="email"
@@ -47,7 +70,7 @@ export default function LoginForm() {
             </label>
             <div className="relative">
               <input
-                className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
+                className="peer text-black block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
                 id="password"
                 type="password"
                 name="password"
@@ -84,7 +107,8 @@ function LoginButton() {
 
   return (
     <button className="mt-4 w-full" aria-disabled={pending}>
-      Log in {/* <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" /> */}
+      Register{" "}
+      {/* <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" /> */}
     </button>
   );
 }
