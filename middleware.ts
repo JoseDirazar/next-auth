@@ -18,7 +18,7 @@ export default auth((req) => {
   const isAuthRoute = authRoutes.includes(nextUrl.pathname);
   const isPrivateRoute = privateRoutes.includes(nextUrl.pathname);
   const isAdminRoute = adminRoutes.includes(nextUrl.pathname);
-  console.log("REQUEST::::::::::", req.geo);
+  console.log("REQUEST::::::::::", req.);
   if (isLoggedIn && isAuthRoute) {
     return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
   }
