@@ -9,7 +9,6 @@ export async function getUserFromDb(email: string, password: string) {
     });
 
     if (user && (await verifyPassword(password, user.password))) {
-      // Exclude the password before returning the user object
       const { password, ...userWithoutPassword } = user;
       return userWithoutPassword;
     }

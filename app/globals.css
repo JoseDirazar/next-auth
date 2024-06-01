@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  @apply transition-colors duration-100;
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -17,7 +21,7 @@
 }
 
 body {
-  @apply h-screen w-screen
+  @apply h-screen w-screen;
 }
 
 @layer utilities {
