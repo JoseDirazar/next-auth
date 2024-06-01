@@ -24,9 +24,9 @@ export default function RegisterForm() {
     router.push("/sign-in");
   }
   return (
-    <form action={submitAction} className="container max-w-sm flex items-center justify-center">
+    <form action={submitAction} className="container max-w-sm">
       <div className="rounded-lg bg-slate-950 shadow-2xl shadow-violet-950 px-6 pb-4 pt-8 flex flex-col items-center justify-center">
-        <h1 className={`mb-3 text-2xl`}>Please register to continue</h1>
+        <p className={`mb-3 text-2xl`}>Please register to continue</p>
         <div className="w-full">
           <div>
             <label
