@@ -1,13 +1,9 @@
 import NextAuth from "next-auth";
 import authConfig from "./auth.config";
 import { getUserById } from "./utils/auth-queries";
+import { ROLETYPE } from "@prisma/client";
 
-export const {
-  handlers: { GET, POST },
-  auth,
-  signIn,
-  signOut,
-} = NextAuth({
+export const { handlers, auth, signIn, signOut } = NextAuth({
   /*  events: {
     async linkAccount({ user }) {
       await db.user.update({
@@ -17,35 +13,32 @@ export const {
     }
   }, */
   callbacks: {
-    async signIn({ user, profile, account, credentials }) {
-      /*  if(user.id) {  logica para loguear solo usuarios con email verificado - para usarlo falta que al loguear con google se verifique el campo automaticamente
-          const existingUser = await getUserById(user.id)
+    async signIn({ user }) {
+      if (user.id) {
+        const existingUser = await getUserById(user.id);
 
-          if(!existingUser || !existingUser?.emailVerified) {
-            return false
-          }
-        } */
-      console.log("signIn", user);
+        if (!existingUser || existingUser.role !== ROLETYPE.ADMIN) {
+          return false;
+        }
+      }
+
       return true;
     },
 
-    async jwt({ token, user }) {
+    async jwt({ token }) {
       if (!token.sub) return token;
-      console.log("JWT user ", user);
       const existingUser = await getUserById(token.sub);
 
       if (!existingUser) return token;
 
       token.role = existingUser.role;
-      if (user) {
-        // User is available during sign-in
-        token.id = user.id;
-      }
+      token.id = token.sub;
+
       return token;
     },
-    session({ session, token, user }) {
-      session.user.id = token.id as string;
+    session({ session, token, newSession, trigger }) {
       if (token.role && session.user) {
+        session.user.id = token.id as string;
         session.user.role = token.role;
       }
       return session;

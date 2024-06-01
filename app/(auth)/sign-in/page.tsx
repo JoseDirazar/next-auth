@@ -1,7 +1,11 @@
 import LoginForm from "@/components/auth/sign-in";
 
 function SignInPage() {
-  return <LoginForm />;
+  return (
+    <>
+      <LoginForm />
+    </>
+  );
 }
 
 export default SignInPage;

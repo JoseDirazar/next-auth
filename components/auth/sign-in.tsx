@@ -9,6 +9,7 @@ import {
   ExclamationCircleIcon,
 } from "@heroicons/react/24/outline";
 import { ArrowRightIcon } from "@heroicons/react/20/solid";
+import Link from "next/link";
 
 export default function LoginForm() {
   const [errorMessage, dispatch] = useFormState(authenticate, undefined);
@@ -75,6 +76,12 @@ export default function LoginForm() {
         </div>
         <LoginButton />
       </div>
+      <p className="text-white mt-5 text-center">
+        Dont have an account?{" "}
+        <Link href="/sign-up" className="text-blue-600">
+          Sign up
+        </Link>
+      </p>
     </form>
   );
 }
