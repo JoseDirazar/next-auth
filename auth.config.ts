@@ -16,7 +16,6 @@ async function getUser(email: string): Promise<User | null> {
         email,
       },
     });
-    //console.log('db user:: ', user)
     return user;
   } catch (error) {
     console.error("Failed to fetch user:", error);
@@ -45,13 +44,12 @@ export default {
           const { email, password } = parsedCredentials.data;
           const user = await getUser(email);
 
-          if (!user || !user.password) {
-            console.log("NULL USER OR PASSWORD");
+          if (!user?.password) {
+            console.error("NULL USER OR PASSWORD");
             return null;
           }
 
           const passwordsMatch = await bcrypt.compare(password, user.password);
-          console.log(user);
           if (passwordsMatch) return user;
         }
         console.log("Invalid credentials");
