@@ -17,7 +17,7 @@ const ThemeSwitch = () => {
   if (!isMounted) {
     return null;
   }
-
+console.log({setTheme, resolvedTheme})
   return (
     <div className="flex items-center gap-x-4">
       {resolvedTheme === "light" ? (
