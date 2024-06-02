@@ -19,13 +19,19 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.className} `}>
-        <SessionProvider>
-        <ThemeContextProvider>
-          {children}
-          <ThemeSwitch />
+      <body className={`${inter.className}`}>
+        <ThemeContextProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+        >
+          <SessionProvider>
+            <main className="flex h-full w-full flex-col items-center justify-between p-24">
+              {children}
+            <ThemeSwitch />
+            </main>
+          </SessionProvider>
         </ThemeContextProvider>
-        </SessionProvider>
       </body>
     </html>
   );

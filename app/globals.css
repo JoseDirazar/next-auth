@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 * {
-  @apply transition-colors duration-100;
+  @apply transition-all duration-75;
 }
 
 :root {
@@ -12,7 +12,7 @@
   --background-end-rgb: 255, 255, 255;
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: system) {
   :root {
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 0, 0, 0;
@@ -21,7 +21,7 @@
 }
 
 body {
-  @apply h-screen w-screen;
+  @apply h-full w-full bg-slate-300 dark:bg-slate-800;
 }
 
 @layer utilities {

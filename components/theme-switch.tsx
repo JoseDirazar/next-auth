@@ -25,11 +25,11 @@ console.log({setTheme, resolvedTheme})
         className="flex h-[2.5rem] w-[2.5rem] items-center justify-center rounded-full border-[2px] border-black border-opacity-40 bg-black text-white antialiased shadow-2xl backdrop-blur-[0.5rem] transition-all sm:hover:scale-[1.15] active:scale-110 dark:bg-white"
         onClick={() => setTheme("dark")}
       >
-          <MoonIcon className="rounded-full bg-black text-xl font-bold text-white" />
+          <MoonIcon className="rounded-full overflow-hidden bg-black text-xl font-bold text-white" />
       </button>
         ) : (
           <button
-        className="flex h-[2.5rem] w-[2.5rem] items-center justify-center rounded-full border-[2px] border-black border-opacity-40 bg-black text-white antialiased shadow-2xl backdrop-blur-[0.5rem] transition-all sm:hover:scale-[1.15] active:scale-110 dark:bg-white"
+        className="flex h-[2.5rem] w-[2.5rem] items-center justify-center rounded-full overflow-hidden border-[2px] border-black border-opacity-40 bg-black text-white antialiased shadow-2xl backdrop-blur-[0.5rem] transition-all sm:hover:scale-[1.15] active:scale-110 dark:bg-white"
         onClick={() => setTheme("light")}
       >
           <SunIcon className="text-xl dark:bg-white dark:text-black" />

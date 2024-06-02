@@ -9,7 +9,7 @@ export default async function Home() {
   const session = await auth();
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <>
       {session ? (
         <>
           <h1>Hello {session?.user?.name}!</h1>
@@ -36,6 +36,6 @@ export default async function Home() {
         )}
       </div>
       <Link href="/about">About</Link>
-    </main>
+    </>
   );
 }
